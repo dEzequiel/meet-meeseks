@@ -1,3 +1,4 @@
+// Importa el singleton de MrMeeseks
 let factory = require("./mrmeeseks");
 
 function Box() {

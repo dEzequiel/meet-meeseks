@@ -7,41 +7,17 @@
 
 // Creacion del prototipo.
 // Un "constructor" en JavaScript es "solo" una función que pasa a ser llamada con el operador new.
-
 function MrMeeseks() {
-  this.id = 0; // Tendras una lista de Meeseks, el id no se puede repetir si se crea uno
   this.messageOnCreate = "I'm Mr Meeseks! Look at meee!";
   this.messageOnRequest = [
     "Oooh yeah! Can do!",
     "Yes sireee!",
     "Oh, yeah!, Yes, ma'am!",
   ];
-  this.messageOnDone = "";
-  this.messageOnExplode = "";
-  this.request = "";
 }
 
-// MrMeeseks.prototype.speakOnCreate = function () {
-//   console.log(this.messageOnCreate);
-// };
-
+// PROTOTYPE METHODS //
 MrMeeseks.prototype = {
-  //   get: function () {
-  //     return this.id;
-  //   },
-
-  //   getMessageOnRequest(index) {
-  //     if (index instanceof string) {
-  //       console.log("Should send a number");
-  //     } else {
-  //       return this.messageOnRequest[index];
-  //     }
-  //   },
-
-  //   setRequest(request) {
-  //     this.messageOnRequest.push(request)
-  //   },
-
   speakOnCreate: function () {
     console.log(this.messageOnCreate);
     return this.messageOnCreate;
@@ -60,7 +36,7 @@ MrMeeseks.prototype = {
   makeRequest: function (desire, object) {
     let closure = function (thing) {
       function execute() {
-        return desire + " " + object; // Esta accediento a desire y object que son del ambito de otra funcion.
+        return desire + " " + thing;
       }
       return execute;
     };
@@ -75,10 +51,13 @@ MrMeeseks.prototype = {
     console.log(this.action() + " All done!!");
     return this.action() + " All done!!";
   },
+
+  learnRequest: function (deseo, objeto) {
+    this.accion = deseo(objeto);
+  },
 };
 
 // SINGLETON DEL OBJETO MRMEESEK //
-
 /** Este objeto hereda directamente del prototipo de MrMeesek, que ha sido
  * alterado con nuevos metodos mas arriba. */
 var singletonFactory = (function () {
